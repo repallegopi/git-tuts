@@ -1,0 +1,247 @@
+Oracle
+MS SQL Server
+Teradata
+IBM DB2
+Sybase
+Natezza
+
+SQL — Structured Query Language
+
+ANSI
+
+—————————————————
+
+1.Numeric
+
+int
+decimal
+float
+double
+number
+
+number(6) 999999
+
+number(8,2) 999999.99
+
+number(2,2) 0.99
+
+2. Character
+
+char 2000
+varchar 2000
+varchar2 4000
+
+first_name char(10) ARUN + 6 char (reserved)
+
+first_name varchar2(10) ARUN + 6 char released
+
+ 
+
+3. Date
+
+date
+
+insert — format mm/dd/yyyy
+dd/mm/yyyy
+
+4. LOB
+
+CLOB — GB
+
+create table test
+(
+cust_id number(2,2),
+cust_name char(10),
+cust_name2 varchar(10)
+);
+
+drop table test;
+
+insert into test values(0.89,’Arun’,’john’);
+
+desc test;
+
+select * from test;
+
+select length(cust_name),length(cust_name2) from test;
+
+——————————————————————-
+
+SQL
+
+DDL DML DRL TCL DCL
+
+ 
+
+DDL – Data Definition Language — Auto Commit
+
+create
+alter
+rename
+truncate
+drop
+
+DML – Data Manipulation Language — User commit
+
+Insert
+update
+delete
+Merge
+
+DRL – Data Retrival language:
+
+select
+
+ 
+
+TCL – Transaction Control Language
+
+commit
+rollback
+savepoint
+
+ 
+
+DCL – Data Control Language (DBA)
+
+Grant
+Revoke
+
+——————————————————————–
+
+create table table_name
+(
+column_1 data_type,
+column_2 data_type,
+column_3 data_type,
+.
+.
+.
+column_n data_type
+);
+
+create table customer
+(
+cust_id number(6),
+cust_name varchar2(30),
+mobile_no number(10),
+dob date,
+city varchar2(100),
+email_id varchar2(100)
+);
+
+ 
+
+insert into table_name
+(column1,column2,column3)
+values
+(value1,value2,value3);
+
+ 
+
+create table customer
+(
+cust_id number(6),
+cust_name varchar2(30),
+dob date,
+mobile number(10),
+address varchar2(100)
+);
+
+select * from customer;
+
+insert into customer
+(CUST_ID,cust_name,dob,mobile,address)
+values
+(100000,’Arun’,to_date(’09/12/1992′,’mm/dd/yyyy’),9090909090,’Chennai’);
+
+select * from customer;
+
+rollback;
+
+commit;
+
+insert into customer
+values
+(100001,’Kannan’,to_date(’09/11/2000′,’mm/dd/yyyy’),8132437493,’Chennai’);
+
+insert into customer
+values
+(100002,’Radha’,to_date(’09/24/2012′,’mm/dd/yyyy’),1348374989);
+–SQL Error: ORA-00947: not enough values
+
+insert into customer
+(CUST_ID,cust_name,dob,mobile)
+values
+(100002,’Radha’,to_date(’09/24/2012′,’mm/dd/yyyy’),1348374989);
+
+commit;
+
+update table_name
+set column_name=value
+where condition;
+
+update customer
+set address=’Hydrabad’;
+
+rollback;
+
+select * from customer;
+
+update customer
+set address=’Hydrabad’
+where cust_id=100002;
+
+commit;
+
+— Add a column
+
+alter table table_name
+add column_name data_type;
+
+ 
+
+alter table customer
+add zip number(6);
+
+select * from customer;
+
+–drop a column
+
+alter table table_name
+drop column column_name;
+
+alter table customer
+drop column address;
+
+ 
+
+— Rename a table
+
+rename old_table_name to new_table_name;
+
+rename customer to customer_details;
+
+select * from customer_details;
+
+ 
+
+— rename a column
+
+alter table table_name
+rename column old_name to new_name;
+
+alter table customer_details
+rename column mobile to mobile_no;
+
+——————————————————————–
+
+1. bkp a table
+
+2. truncate base table
+
+3. modify data type
+
+4. Restore the data
+
+5. drop bkp table
